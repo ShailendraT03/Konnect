@@ -4,7 +4,7 @@
   "description": "Service App provides home based services to its users.",
   "main": "index.js",
   "scripts": {
-    "start": "node app/index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
