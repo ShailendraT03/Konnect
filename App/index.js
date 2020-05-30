@@ -235,6 +235,6 @@ app.post('/login',async function(req,res) {
 var server = http.Server(app)
 
 server.listen(process.env.PORT,function(){
-    console.log(`app listening at http://:${config.host.port}`)
+    console.log(`app listening at http://:${process.env.PORT}`)
 
 })
