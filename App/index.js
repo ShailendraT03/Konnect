@@ -18,6 +18,10 @@ sql = {
     database: 'K2GServices'
 }
 
+app.get('/',async function(req,res){
+	res.status(200).send(JSON.stringify({Successful:"Successful"}));
+})
+
 app.post('/register',async function(req,res) {
 	
     /* var user= {
