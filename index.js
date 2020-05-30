@@ -40,6 +40,8 @@ app.post('/register',async function(req,res) {
 	user.type=req.body.type
 	user.email=req.body.email
 	user.phone_num=req.body.phone_num
+	user.service_type=req.body.service_type
+	user.prvd_service=req.body.prvd_service
 	user.pass=req.body.pass
 
 	console.log(user)
@@ -47,12 +49,25 @@ app.post('/register',async function(req,res) {
 	if(user===undefined || user.type === undefined || user.uname === undefined || user.email === undefined || user.phone_num === undefined || user.pass === undefined)
 	{
 		res.status(400).send("Bad Request");
+	}
+	
+	if(user.type == "vendor" && (user.service_type === undefined || user.prvd_service === undefined))
+	{
+		res.status(400).send("Bad Request");
     }
     
     async function setUserDetails(user){
         return new Promise(function(resolve, reject) {
-            connection = mysql.createConnection(sql);
-            connection.query(`insert into KG_${user.type} (uname,email,phone_num) values ("${user.uname}","${user.email}",${user.phone_num})`,(err,result) => {
+			connection = mysql.createConnection(sql);
+			if(user.type == "customer")
+			{
+					var query=`insert into KG_customer (uname,email,phone_num) values ("${user.uname}","${user.email}",${user.phone_num})`
+			}
+			else if(user.type == "vendor")
+			{
+					var query=`insert into KG_vendor (uname,email,phone_num,service_type,prvd_service) values ("${user.uname}","${user.email}",${user.phone_num},"${user.service_type}","${user.prvd_service}")`
+			}
+            connection.query(query,(err,result) => {
                 if(err){
                     console.error(err);
                     resolve(undefined);

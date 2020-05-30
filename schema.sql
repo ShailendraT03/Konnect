@@ -23,7 +23,7 @@ create table KG_vendor(
 	vendor_id 		bigint primary key  auto_increment,
     uname		varchar(255) unique not null,
 	email		varchar(511) unique not null,
-	phone_num	int(10),
+	phone_num	int(15),
     location    varchar(25),
     service_type    varchar(50) not null,
 	prvd_service	varchar(50) not null
