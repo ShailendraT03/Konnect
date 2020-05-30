@@ -4,6 +4,7 @@ const creds = require('./database_auth_mod')
 const config = require('./config')
 const hash = require('./encrypted')
 const bodyparser = require('body-parser')
+const http = require('http')
 
 var app = express()
 
@@ -231,7 +232,9 @@ app.post('/login',async function(req,res) {
 
 })
 
-var server = app.listen(config.host.port,config.host.hostname,function(){
-    console.log(`app listening at http://${config.host.hostname}:${config.host.port}`)
+var server = http.Server(app)
+
+server.listen(process.env.PORT,function(){
+    console.log(`app listening at http://:${config.host.port}`)
 
 })
