@@ -6,6 +6,8 @@ const hash = require('./encrypted')
 const bodyparser = require('body-parser')
 const http = require('http')
 
+var port = process.env.PORT || 5000
+
 var app = express()
 
 app.use(bodyparser.json());
@@ -234,7 +236,7 @@ app.post('/login',async function(req,res) {
 
 var server = http.Server(app)
 
-server.listen(process.env.PORT,function(){
-    console.log(`app listening at http://:${process.env.PORT}`)
+server.listen(port,function(){
+    console.log(`app listening at http://:${port}`)
 
 })
