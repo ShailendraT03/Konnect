@@ -52,5 +52,5 @@ jobs:
       with:
         app-name: 'Konnectogrow'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_69caa4201bc54bd5955bb289b4ed8231 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_fb1d266425be4dbfbbd14a5f85d1948a }}
         package: .
