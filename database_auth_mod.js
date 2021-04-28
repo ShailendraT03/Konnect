@@ -1,6 +1,7 @@
 creds = {}
 creds.sqlhost="localhost"
-creds.sqluser="root"
-creds.sqlpass="Chan5495@mysql"
+creds.sqluser="rootk2g"
+creds.sqlpass="infy@123"
+creds.sqlport=3306
 
 module.exports=creds

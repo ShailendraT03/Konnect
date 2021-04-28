@@ -2,30 +2,19 @@ var crypto = require('crypto');
 
 let encrypted={}
 
-encrypted.genRandomString = function(length){
-    return crypto.randomBytes(Math.ceil(length))
-	    .toString('hex')
-	    .slice(0,length);
-};
-
-encrypted.sha512 = function(password, salt){
-    var hash = crypto.createHmac('sha512', password);
-    return {
-	salt:salt,
-	passwordHash:encrypted.digestHmac(hash,salt)	//will be digested later
-    };
-};
-
-encrypted.digestHmac = (hash,salt)=>{	//salted Hash
-	hash.update(salt);
-	return hash.digest('hex')
-}
-
-
 encrypted.saltHashPassword= (userpassword) =>{
-    var salt = encrypted.genRandomString(8);
-    return encrypted.sha512(userpassword, salt);
+    var salt = crypto.randomBytes(10).toString('hex').slice(0,10);
+    var hash = crypto.pbkdf2Sync(userpassword, salt, 1000, 64, `sha512`).toString('hex')
+    return{
+        salt:salt,
+        passwordHash:hash
+        }
 }
+
+encrypted.validPassword = function(pass,userpassword,salt) { 
+    var hash = crypto.pbkdf2Sync(pass,salt, 1000, 64, `sha512`).toString(`hex`); 
+    return userpassword === hash; 
+} 
 
 module.exports = encrypted;
 

@@ -1,6 +1,6 @@
 config = {}
-config.host={}
-config.host.hostname="localhost"
-config.host.port=process.env.PORT
+config.hostname="localhost"
+config.port=5000
+config.dirname="C:\Users\Shailendra\Desktop\K2GHomeservices\ServiceApp\ServiceApp"
 
 module.exports=config
