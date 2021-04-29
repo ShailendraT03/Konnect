@@ -10,7 +10,7 @@ sql = {
     user	: creds.sqluser,
 	password: creds.sqlpass,
 	port	: 3306,
-    database: 'K2GServices'
+    database: 'k2gservices'
 }
 async function getDetails(user){
     return new Promise(function(resolve, reject) {
